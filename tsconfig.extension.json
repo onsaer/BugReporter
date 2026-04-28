@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist/bug-reporter/browser",
+    "module": "es2020",
+    "target": "es2020",
+    "moduleResolution": "node",
+    "noEmit": false
+  },
+  "include": [
+    "src/content.ts",
+    "src/background.ts",
+    "src/app/models/bug-report.model.ts"
+  ]
+}
