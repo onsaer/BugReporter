@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BugContext, BugReport } from '../models/bug-report.model';
 
-declare const chrome: any;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +8,7 @@ export class ChromeMessageService {
 
   requestContext(): Promise<BugContext> {
     return new Promise((resolve, reject) => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs: any[]) => {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs: chrome.tabs.Tab[]) => {
         if (!tabs[0]?.id) {
           reject(new Error('No active tab found'));
           return;
