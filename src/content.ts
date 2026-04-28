@@ -5,7 +5,10 @@ const capturedConsoleErrors: ConsoleError[] = [];
 const originalConsoleError = console.error.bind(console);
 console.error = (...args: unknown[]): void => {
   capturedConsoleErrors.push({
-    message: args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' '),
+    message: args.map(a => {
+      if (typeof a !== 'object' || a === null) return String(a);
+      try { return JSON.stringify(a); } catch { return String(a); }
+    }).join(' '),
     timestamp: Date.now()
   });
   originalConsoleError(...args);
