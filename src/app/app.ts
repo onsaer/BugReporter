@@ -58,7 +58,7 @@ export class App implements OnInit {
       });
   }
 
-  get storageKeys(): string[] {
+  get localStorageKeys(): string[] {
     const ctx = this.context();
     if (!ctx) return [];
     return Object.keys(ctx.localStorage);
